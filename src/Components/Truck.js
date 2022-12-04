@@ -20,7 +20,17 @@ class Truck extends React.Component {
     componentDidMount() {
         setTimeout(() => {
           this.setState({year: 2000})
-        }, 1000)
+        }, 5000)
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        document.getElementById("div1").innerHTML =
+        "Before the update, the year was " + prevState.year;
+    }
+      
+    componentDidUpdate() {
+        document.getElementById("div2").innerHTML =
+        "The updated year is " + this.state.year;
     }
 
     render() {
@@ -32,6 +42,8 @@ class Truck extends React.Component {
                 type="button"
                 onClick={this.changeColor}
             >Change color</button>
+            <div id="div1"></div>
+            <div id="div2"></div>
         </div>
         
       );
